@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4ur6asej22iy"]
+
+[ext_resource type="Script" path="res://scripts/game_manager_1.gd" id="1_7o3vr"]
+[ext_resource type="FontFile" uid="uid://ovwrfwihy2ke" path="res://assets/fonts/Pixelpunk_bold.ttf" id="2_iwdox"]
+
+[node name="GameManager1" type="Node"]
+script = ExtResource("1_7o3vr")
+
+[node name="ScoreLabel" type="Label" parent="."]
+offset_left = 1284.0
+offset_top = -687.0
+offset_right = 1398.0
+offset_bottom = -654.0
+theme_override_fonts/font = ExtResource("2_iwdox")
+theme_override_font_sizes/font_size = 20
+text = "Score"

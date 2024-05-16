@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1usklxtds6l7"]
+
+[ext_resource type="Script" path="res://scripts/HUD.gd" id="1_2frpo"]
+[ext_resource type="FontFile" uid="uid://ovwrfwihy2ke" path="res://assets/fonts/Pixelpunk_bold.ttf" id="2_fjpj4"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_2frpo")
+
+[node name="cointcount" type="Label" parent="."]
+offset_left = 917.0
+offset_top = -3.0
+offset_right = 1267.0
+offset_bottom = 95.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_fjpj4")
+theme_override_font_sizes/font_size = 23
+text = "Score: "
+horizontal_alignment = 1
+
+[node name="Lives" type="Label" parent="."]
+offset_left = 917.0
+offset_top = -3.0
+offset_right = 965.0
+offset_bottom = 20.0
+text = "Lives: "

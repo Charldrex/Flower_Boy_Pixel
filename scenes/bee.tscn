@@ -1,0 +1,115 @@
+[gd_scene load_steps=15 format=3 uid="uid://bm04whvlqr4e1"]
+
+[ext_resource type="Script" path="res://scripts/bee.gd" id="1_d8ao0"]
+[ext_resource type="Texture2D" uid="uid://cd2acslxd8hs6" path="res://assets/sprites/bee_move.png" id="1_fb8rj"]
+[ext_resource type="Texture2D" uid="uid://cvebq6aoje6vv" path="res://assets/sprites/bee_dead2.png" id="3_ehgpa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2d6w1"]
+atlas = ExtResource("1_fb8rj")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ewevt"]
+atlas = ExtResource("1_fb8rj")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qa034"]
+atlas = ExtResource("1_fb8rj")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2f06y"]
+atlas = ExtResource("1_fb8rj")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ij56"]
+atlas = ExtResource("3_ehgpa")
+region = Rect2(0, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_30lha"]
+atlas = ExtResource("3_ehgpa")
+region = Rect2(40, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p4u28"]
+atlas = ExtResource("3_ehgpa")
+region = Rect2(80, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rmhmu"]
+atlas = ExtResource("3_ehgpa")
+region = Rect2(120, 0, 40, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ocudt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2d6w1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ewevt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qa034")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2f06y")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ij56")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_30lha")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p4u28")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rmhmu")
+}],
+"loop": true,
+"name": &"die",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xpk4e"]
+size = Vector2(14, 19)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ekrjg"]
+size = Vector2(14, 4)
+
+[node name="Bee" type="CharacterBody2D"]
+collision_mask = 3
+script = ExtResource("1_d8ao0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(2, -10)
+scale = Vector2(0.875, 0.8125)
+sprite_frames = SubResource("SpriteFrames_ocudt")
+animation = &"die"
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -9.5)
+shape = SubResource("RectangleShape2D_xpk4e")
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+position = Vector2(1, -9)
+target_position = Vector2(12, 0)
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+position = Vector2(-2, -9)
+target_position = Vector2(-12, 0)
+
+[node name="hitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(-1, -22)
+shape = SubResource("RectangleShape2D_ekrjg")
+
+[node name="death_timer_bee" type="Timer" parent="."]
+
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]

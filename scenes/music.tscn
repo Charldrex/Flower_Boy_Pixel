@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7arj7lnfv8i2"]
+
+[ext_resource type="AudioStream" uid="uid://b2ds8cqhc6jge" path="res://assets/music/tyler_music.mp3" id="1_dq5ff"]
+
+[node name="Music" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_dq5ff")
+volume_db = 1.0
+autoplay = true
+bus = &"Music"
